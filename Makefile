@@ -1,3 +1,4 @@
+MD := mkdir -p
 CC = g++
 MO = ./build/src/main.o
 DO = ./build/src/deposit.o
@@ -10,13 +11,18 @@ MTO = ./build/test/main_test.o
 DTO = ./build/test/deposit_test.o
 VTO = ./build/test/validation_test.o
 
-all: dc test 
+all: mdt dc test
 
 dc: $(DO) $(MO)
 	$(CC) $(MO) $(DO) -o ./bin/deposit-calc
 
 test: $(MTO) $(DTO) $(VTO)
 	$(CC) $(MTO) $(DTO) $(VTO) -o ./bin/deposit-calc_test
+
+mdt: $(MC)
+	$(MD) ./build
+	$(MD) ./build/src
+	$(MD) ./build/test
 
 $(DO): $(DC)
 	$(CC) -c $(DC) -o $(DO)
@@ -25,13 +31,13 @@ $(MO): $(MC)
 	$(CC)  -c $(MC) -o $(MO)
 
 $(MTO): $(MT)
-	 $(CC) -c $(MT) -o $(MTO)
+	$(CC) -c $(MT) -o $(MTO)
 
 $(DTO): $(DT)
-	 $(CC) -c $(DT) -o $(DTO)
+	$(CC) -c $(DT) -o $(DTO)
 
 $(VTO): $(VT)
-	 $(CC) -c $(VT) -o $(VTO)
+	$(CC) -c $(VT) -o $(VTO)
 
 clean:
 	rm ./build/test/*.o
