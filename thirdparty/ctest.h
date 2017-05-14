@@ -34,6 +34,7 @@
 #define CTEST_IMPL_FORMAT_PRINTF(a, b)
 #endif
 
+#define __STDC_FORMAT_MACROS
 #include <inttypes.h> /* intmax_t, uintmax_t, PRI* */
 #include <stddef.h> /* size_t */
 
